@@ -223,7 +223,7 @@ btree_sync(struct btree * T, int (* callback)(void *), void * cookie)
 
 	/* Sanity check the number of pages serialized. */
 	assert(pn == npages);
-	assert(npages <= UINT32_MAX);
+	assert(npages * T->pagelen <= UINT32_MAX);
 
 	/* Write pages out. */
 	if (proto_lbs_request_append_blks(T->LBS, (uint32_t)npages, T->nextblk,
